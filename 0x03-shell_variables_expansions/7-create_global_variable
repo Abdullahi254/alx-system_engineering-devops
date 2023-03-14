@@ -1,2 +1,3 @@
 #!/bin/bash
-export BEST="SCHOOL"
+source export BEST="SCHOOL"
+
