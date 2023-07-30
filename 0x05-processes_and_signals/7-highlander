@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# indefinate loop
+
+function on_interrupt {
+	echo "I am invincible!!!"
+}
+
+trap on_interrupt SIGTERM
+
+i=0
+while [ $i -eq 0 ]
+	do
+		echo "To infinity and beyond"
+		sleep 2
+	done
