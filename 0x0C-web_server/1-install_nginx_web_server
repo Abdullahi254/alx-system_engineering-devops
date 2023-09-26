@@ -1,33 +1,33 @@
 #!/usr/bin/env bash
-# installs nginx and configure it to listen on port 80
-# print "Hello World"
+#install ngix and have a file that returns the string "Hello World  inside
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-
-# Replace with your server IP or domain
-server_name="54.157.134.127"
-
-# Create an Nginx server block configuration file
-config_file="/etc/nginx/sites-available/hello-world"
-cat <<EOL > $config_file
-server {
-    listen 80;
-    server_name $server_name;
-    location / {
-        return 200 "Hello World!\n";
+sudo apt-get update -y && \
+sudo apt-get install -y nginx
+if [ $? -eq 0 ]
+then
+    echo -e \
+"http {
+    root /var/www/school;
+    index index.html;
+    server {
+        listen 80;
+        location \ {
+        }
     }
 }
-EOL
-
-# Create a symbolic link to enable the configuration
-sudo ln -s $config_file "/etc/nginx/sites-enabled/"
-
-# Test the Nginx configuration
-sudo nginx -t
-
-# Reload Nginx to apply the new configuration
-sudo service nginx reload
-
-echo "Configuration complete. You can now access 'Hello World!' by running:"
-echo "curl http://$server_name/"
+events {
+}" > /etc/nginx/nginx.conf
+    mkdir -p /var/www/school
+    echo "Hello World!" > \
+	/var/www/school/index.html
+    service nginx start
+    if [ $? -ne 0 ]
+    then
+	"Problem starting nginx"
+	exit 1
+    fi
+else
+    echo "Could not install nginx"
+    exit 1
+fi
+exit 0
