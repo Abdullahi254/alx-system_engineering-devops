@@ -27,5 +27,9 @@ sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled
 string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
+# code to add custom http response header
+string_for_rep_two="http {\tadd_header X-Served-By $hostname;\n"
+sudo sed -i "s/http {/$string_for_rep_two" /etc/nginx/nginx.conf
+
 # restart the web server after updating the settings
 sudo service nginx restart
