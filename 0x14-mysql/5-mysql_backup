@@ -19,8 +19,6 @@ if [ $? -eq 0 ]; then
     # Check if tar operation was successful
     if [ $? -eq 0 ]; then
         echo "MySQL dump and compression completed successfully. Archive created: $current_date.tar.gz"
-        # Clean up the temporary dump file
-        rm backup.sql
     else
         echo "Error: Failed to compress the MySQL dump."
         exit 1
