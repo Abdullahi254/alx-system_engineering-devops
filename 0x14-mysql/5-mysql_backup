@@ -1,29 +1,5 @@
 #!/usr/bin/env bash
-# creating a backup for all databases
+# This script generates a MySQL dump and creates a compressed archive  of it
 
-# Get current date in the specified format
-current_date=$(date +"%d-%m-%Y")
-
-# MySQL dump command to generate backup.sql with all databases
-if [ "$#" -ne 1 ]; then
-	sudo mysqldump -u root --all-databases > backup.sql
-else
-	mysqldump -u root -p"$1" --all-databases > backup.sql
-fi
-
-# Check if mysqldump was successful
-if [ $? -eq 0 ]; then
-    # Create a tar.gz archive with the dump file
-    tar -czvf "$current_date.tar.gz" backup.sql
-
-    # Check if tar operation was successful
-    if [ $? -eq 0 ]; then
-        echo "MySQL dump and compression completed successfully. Archive created: $current_date.tar.gz"
-    else
-        echo "Error: Failed to compress the MySQL dump."
-        exit 1
-    fi
-else
-    echo "Error: MySQL dump failed. Please check your MySQL credentials."
-    exit 1
-fi
+mysqldump -uroot -p"$1" --all-databases > backup.sql
+tar -czf $(date +%d-%m-%Y).tar.gz backup.sql
