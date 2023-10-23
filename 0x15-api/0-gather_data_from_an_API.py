@@ -6,6 +6,7 @@ import requests
 import sys
 
 def fetch_completed_task_by_employees():
+    "fetches completed taks and matches with employees"
     employeeId = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
     url = baseUrl + "/" + employeeId
