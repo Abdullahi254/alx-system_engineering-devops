@@ -5,8 +5,8 @@ Script to fetch data from todos api
 import requests
 import sys
 
-def fetch_completed_task_by_employees():
-    "fetches completed taks and matches with employees"
+
+if __name__ == '__main__':
     employeeId = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
     url = baseUrl + "/" + employeeId
@@ -30,6 +30,3 @@ def fetch_completed_task_by_employees():
 
     for task in done_tasks:
         print("\t {}".format(task.get('title')))
-
-if __name__ == '__main__':
-    fetch_completed_task_by_employees()
