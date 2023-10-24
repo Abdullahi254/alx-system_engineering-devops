@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""outputing to a csv file"""
+"""Outputing to a csv file."""
 
 import requests
 import sys
